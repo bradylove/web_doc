@@ -2,10 +2,6 @@ module WebDoc::Documentable
   attr_accessor :title, :description, :base_path, :endpoints, :common_returns,
                 :common_takes
 
-  def self.extended(base)
-
-  end
-
   def common_takes
     @common_takes ||= {}
   end
@@ -41,22 +37,6 @@ module WebDoc::Documentable
       options:     options
     }
   end
-
-  # def post(suffix, &block)
-  #   endpoint = WebDoc::Endpoint.new(:post, build_path(suffix), common_takes.dup, common_returns.dup)
-
-  #   yield endpoint
-
-  #   endpoints << endpoint
-  # end
-
-  # def get(suffix, &block)
-  #   endpoint = WebDoc::Endpoint.new(:get, build_path(suffix), common_takes.dup, common_returns.dup)
-
-  #   yield endpoint
-
-  #   endpoints << endpoint
-  # end
 
   [:get, :post, :put, :patch, :delete, :options].each do |verb|
     define_method verb do |suffix, &block|
