@@ -1,4 +1,2 @@
 require 'rspec'
-require 'web_doc/version'
-
-include WebDoc
+require 'web_doc'
