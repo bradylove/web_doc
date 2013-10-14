@@ -1,4 +1,6 @@
-require 'rspec'
+#!/usr/bin/env ruby
 require 'web_doc'
 
 Dir[File.expand_path("spec/support/**/*.rb")].each { |f| require f }
+
+WebDoc.build_html(Docs)

@@ -1,5 +1,3 @@
-require 'web_doc'
-
 module Docs
   class Users
     extend WebDoc::Documentable
