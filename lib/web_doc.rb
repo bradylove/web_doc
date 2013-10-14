@@ -1,3 +1,4 @@
+require 'web_doc/builder'
 require 'web_doc/documentable'
 require 'web_doc/endpoint'
 require 'web_doc/version'
@@ -26,5 +27,14 @@ module WebDoc
 
   def self.config
     yield self
+    self.load_docs
+  end
+
+  def self.load_docs
+    Dir[File.expand_path("#{@@input}/**/*_doc.rb")].each { |f| require f }
+  end
+
+  def self.build_html(mod)
+    WebDoc::Builder.new(mod, @@output).build!
   end
 end

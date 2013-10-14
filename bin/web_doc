@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 require 'web_doc'
 
-Dir[File.expand_path("spec/support/**/*.rb")].each { |f| require f }
+WebDoc.config do |c|
+  c.input  = "example/docs"
+  c.output = "tmp/example_docs"
+end
 
 WebDoc.build_html(Docs)

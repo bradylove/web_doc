@@ -85,5 +85,4 @@ describe WebDoc::Documentable do
     expect(mock_doc.endpoints[5].title).to eq "Options User"
     expect(mock_doc.endpoints[5].description).to eq "Preflight request for CORS"
   end
-
 end
