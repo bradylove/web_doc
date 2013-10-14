@@ -9,12 +9,15 @@ module WebDoc
 
       @css_assets_dir = File.expand_path("../../assets/css", __FILE__)
 
-      @mod     = mod
-      @output  = output
-      @title   = "WebDoc Generated API Documentation"
+      @mod       = mod
+      @output    = output
+      @title     = "WebDoc Generated API Documentation"
+      @resources = []
     end
 
     def build!
+      constantize_resources 
+      
       Dir.mkdir(@output) unless File.exists?(@output)
       # Dir.mkdir(@css_out) unless File.exists?(@css_out)
 
@@ -26,6 +29,12 @@ module WebDoc
     end
 
     private
+
+    def constantize_resources
+      @mod.constants.each do |con|
+        @resources << @mod.const_get(con)
+      end
+    end
 
     def copy_css
       FileUtils.cp_r(@css_assets_dir, @output)

@@ -14,6 +14,9 @@ html
         .panel-heading
           b Resources
         .panel-body
+          - @resources.each do |resource|
+            a href="#"
+              = resource.title
 
         .panel-footer
     .col-md-9
