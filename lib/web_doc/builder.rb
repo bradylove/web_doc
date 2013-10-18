@@ -19,7 +19,6 @@ module WebDoc
       constantize_resources 
       
       Dir.mkdir(@output) unless File.exists?(@output)
-      # Dir.mkdir(@css_out) unless File.exists?(@css_out)
 
       File.open("#{@output}/index.html", "w+") do |f|
         f.write(render)

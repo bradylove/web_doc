@@ -15,8 +15,47 @@ html
           b Resources
         .panel-body
           - @resources.each do |resource|
-            a href="#"
+            a href="##{ resource.title }"
               = resource.title
 
         .panel-footer
     .col-md-9
+      - @resources.each do |resource|
+        .page-header
+          a name="#{resource.title}"
+          h2
+            b= resource.title
+        p= resource.description
+        br
+        - resource.endpoints.each do |endpoint|
+          .panel.panel-default
+            .panel-heading
+              h3
+                #{ endpoint.title } - #{ endpoint.path }
+            .panel-body
+              p= endpoint.description
+              br
+              h4 Request Parameters
+              table.table
+                tbody
+                  - if endpoint.incoming.empty?
+                    tr
+                      td
+                        b None
+                  - endpoint.incoming.each_pair do |k, v|
+                    tr
+                      td.col-md-3= k
+                      td= v[:description]
+              br
+              h4 Return Parameters
+              table.table
+                tbody
+                  - if endpoint.outgoing.empty?
+                    tr
+                      td
+                        b None
+                  -endpoint.outgoing.each_pair do |k, v|
+                    tr
+                      td.col-md-3= k
+                      td= v[:description]
+          br
